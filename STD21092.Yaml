@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: 2010-09-09
+Ressources:
+  BucketS3:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: STD21092
+
+
+  BucketSSM:
+    Type: 'AWS::SSM::Parametre'
+    Properties:
+      Name: ! Join [ '',[ /test/, /s3/bucket-name] ]
+      Type: String
+      Value: !GetAtt BucketS3.Arn
+
